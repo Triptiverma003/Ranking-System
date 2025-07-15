@@ -2,11 +2,12 @@ import { User } from "../models/User.js";
 import { History } from "../models/History.js";
 
 export const addUser = async (req, res) => {
-  const { name } = req.body;
+  const { name, image } = req.body;
+
   const exists = await User.findOne({ name });
   if (exists) return res.status(400).json({ message: "User already exists" });
 
-  const newUser = await User.create({ name });
+  const newUser = await User.create({ name, image }); // add image
   res.status(201).json(newUser);
 };
 
