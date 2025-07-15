@@ -16,7 +16,7 @@ app.use(cors({
 
 // Only start app after DB is connected
 connectToDB().then(() => {
-  console.log("✅ MongoDB connected");
+  console.log("MongoDB connected");
 
   //  Mount routes *after* DB connection
   app.use("/api", userRoutes);
@@ -25,5 +25,5 @@ connectToDB().then(() => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
   });
 }).catch((err) => {
-  console.error("❌ DB connection failed:", err);
+  console.error(" DB connection failed:", err);
 });
