@@ -4,6 +4,7 @@ import { useApp } from '../context/AppContext';
 import Layout from '../components/shared/Layout';
 
 const Claim = () => {
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
   const { users, setUsers, selectedUserId, setSelectedUserId } = useApp();
   const [isAnimating, setIsAnimating] = useState(false);
   const [lastClaimedPoints, setLastClaimedPoints] = useState(null);
@@ -15,7 +16,7 @@ const Claim = () => {
     setLastClaimedPoints(null);
 
     try {
-      const response = await fetch(`http://localhost:8000/api/claim/${selectedUserId}`, {
+      const response = await fetch(`${serverUrl}/api/claim/${selectedUserId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });

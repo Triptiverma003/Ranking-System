@@ -10,6 +10,7 @@ import { useApp } from '../context/AppContext';
 import Layout from '../components/shared/Layout';
 
 const History = () => {
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
   const { users } = useApp();
   const [history, setHistory] = useState([]);
   const [filterUser, setFilterUser] = useState('');
@@ -17,7 +18,7 @@ const History = () => {
 
   // 🧠 Fetch point history from backend
   useEffect(() => {
-    fetch('http://localhost:8000/api/history')
+    fetch(`${serverUrl}/api/history`)
       .then(res => res.json())
       .then(data => setHistory(data))
       .catch(err => console.error('Error fetching history:', err));

@@ -4,6 +4,7 @@ import { useApp } from '../context/AppContext';
 import Layout from '../components/shared/Layout';
 
 const AddUser = () => {
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
   const { users, addUser } = useApp();
   const [newUserName, setNewUserName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -125,7 +126,7 @@ const AddUser = () => {
           </h3>
           <div className="space-y-2 max-h-60 overflow-y-auto">
             {users.map(user => (
-              <div key={user.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div key={user._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center space-x-3">
                   <div className="text-xl">{user.avatar}</div>
                   <div>

@@ -13,12 +13,13 @@ export const AppProvider = ({ children }) => {
   const [pointHistory, setPointHistory] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [view, setView] = useState('daily');
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
 
   // 🟡 Fetch users from backend on load
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/users");
+        const res = await fetch(`${serverUrl}/api/users`);
         const data = await res.json();
         setUsers(data);
 
@@ -37,7 +38,7 @@ export const AppProvider = ({ children }) => {
   // 🟢 Add user through backend
   const addUser = async (name) => {
     try {
-      const res = await fetch("http://localhost:8000/api/add-user", {
+      const res = await fetch(`${serverUrl}/api/add-user`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name })
@@ -60,7 +61,7 @@ export const AppProvider = ({ children }) => {
   // 🔵 Claim points for selected user via backend
   const claimPoints = async (userId) => {
     try {
-      const res = await fetch(`http://localhost:8000/api/claim/${userId}`, {
+      const res = await fetch(`${serverUrl}/api/claim/${userId}`, {
         method: "POST"
       });
 
